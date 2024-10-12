@@ -1,8 +1,11 @@
+import HomeCard from "@/components/HomeCard"
 
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <HomeCard/>
+    </div>
   )
 }
 
