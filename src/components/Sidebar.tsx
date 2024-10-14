@@ -28,8 +28,8 @@ const Sidebar = () => {
           <>
             <p className="font-semibold text-sm">For You</p>
             <Button size={"icon"} onClick={onCollapsed}>
-            <Hint label={label} side="left">
-              <ArrowLeftFromLine />
+            <Hint label={label} side="left"aschild>
+              <ArrowLeftFromLine/>
             </Hint>
             </Button>
           </>
