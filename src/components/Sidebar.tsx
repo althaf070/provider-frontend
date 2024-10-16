@@ -2,7 +2,7 @@ import { useSideBar } from "@/store/useSidebar";
 import { ArrowLeftFromLine, ArrowRightToLine } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import sidebarLinks from "@/lib/constants";
+import {sidebarLinks} from "@/lib/constants";
 import { Link, useLocation } from "react-router-dom";
 import { Hint } from "./Hint";
 

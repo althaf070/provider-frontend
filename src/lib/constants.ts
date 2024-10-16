@@ -1,6 +1,7 @@
 import { FiHome, FiBook, FiUsers, FiMessageCircle, FiStar, FiSettings } from "react-icons/fi";
 import { IconType } from "react-icons"; // Import IconType for the icon type
 import { MdDashboardCustomize } from "react-icons/md";
+import { Services } from "./types";
 
 // Define a type for the sidebar links
 interface SidebarLink {
@@ -10,7 +11,7 @@ interface SidebarLink {
 }
 
 // Sidebar links array with typed objects
-const sidebarLinks: SidebarLink[] = [
+export const sidebarLinks: SidebarLink[] = [
   {
     title: "Home",
     path: "/",
@@ -48,4 +49,57 @@ const sidebarLinks: SidebarLink[] = [
   },
 ];
 
-export default sidebarLinks;
+
+
+// Step 3: Create the services object
+export const services: Services = {
+  electricalServices: {
+    title: "Electrical Services",
+    type: "electrical",
+  },
+  plumbingServices: {
+    title: "Plumbing Services",
+    type: "plumbing",
+  },
+  carpentryServices: {
+    title: "Carpentry Services",
+    type: "carpentry",
+  },
+  paintingServices: {
+    title: "Painting Services",
+    type: "painting",
+  },
+  handymanServices: {
+    title: "Handyman Services",
+    type: "handyman",
+  },
+  applianceRepairServices: {
+    title: "Appliance Repair Services",
+    type: "appliancerepair",
+  },
+  roofingServices: {
+    title: "Roofing Services",
+    type: "roofing",
+  },
+  cleaningServices: {
+    title: "Cleaning Services",
+    type: "cleaning",
+  },
+};
+
+export const keralaDistricts = [
+  "alappuzha",
+  "ernakulam",
+  "idukki",
+  "kannur",
+  "kasaragod",
+  "kollam",
+  "kottayam",
+  "kozhikode",
+  "malappuram",
+  "palakkad",
+  "pathanamthitta",
+  "thiruvananthapuram",
+  "thrissur",
+  "wayanad"
+];

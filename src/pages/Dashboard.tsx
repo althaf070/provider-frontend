@@ -4,6 +4,8 @@ import { LineCharts } from "@/components/LineChart";
 import UserDetails from "@/components/UserDetails";
 
 const Dashboard = () => {
+  // *TODO add transaction section
+  // *TODO add team members section
   return (
     <>
       <div className="grid grid-cols-1 gap-6  md:grid-cols-12">
@@ -66,9 +68,9 @@ const Dashboard = () => {
         
           </section>
         </div>
-
-       
       </div>
+
+
     </>
   );
 };
