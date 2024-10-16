@@ -21,7 +21,7 @@ const Dashboard = () => {
         </div>
 
         {/* Job Stats Section */}
-        <div className="col-span-12 md:col-span-4 bg-chart-3 p-6 shadow-xl rounded-lg">
+        <div className="col-span-12 md:col-span-4 bg-chart-3 p-2 md:p-6 shadow-xl rounded-lg">
          <h1 className="text-2xl font-semibold">My Teams</h1>
          <ul>
           <li className="text-md font-semibold">teamsname</li>
@@ -32,7 +32,7 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-12 mt-5">
-        <div className="md:col-span-8 col-span-full">
+        <div className="col-span-8 ml-0">
       <LineCharts/>
         </div>
         <div className="col-span-12 md:col-span-4 bg-chart-3 p-6 shadow-xl rounded-lg">
@@ -40,28 +40,28 @@ const Dashboard = () => {
           <ActiveServicesChart/>
           </div>
           <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-chart-1 p-4 shadow rounded-lg text-center">
+            <div className="bg-chart-1 md:p-4 shadow rounded-lg text-center">
               <h2 className="text-sm">Total Jobs Completed</h2>
               <p className="text-3xl font-bold">120</p>
             </div>
-            <div className="bg-chart-1 p-4 shadow rounded-lg text-center">
+            <div className="bg-chart-1 md:p-4 shadow rounded-lg text-center">
               <h2 className="text-sm">Services Committed</h2>
               <p className="text-3xl font-bold">25</p>
             </div>
-            <div className="bg-chart-1 p-4 shadow rounded-lg text-center">
+            <div className="bg-chart-1 md:p-4 shadow rounded-lg text-center">
               <h2 className="text-sm">New Requests</h2>
               <p className="text-3xl font-bold">8</p>
             </div>
            
-            <div className="bg-chart-2 p-4 shadow rounded-lg text-center">
+            <div className="bg-chart-2 md:p-4 shadow rounded-lg text-center">
               <h2 className="text-sm">Total Team jobs</h2>
               <p className="text-3xl font-bold">8</p>
             </div>
-            <div className="bg-chart-2 p-4 shadow rounded-lg text-center">
+            <div className="bg-chart-2 md:p-4 shadow rounded-lg text-center">
               <h2 className="text-sm">Committed Team jobs</h2>
               <p className="text-3xl font-bold">8</p>
             </div>
-            <div className="bg-chart-2 p-4 shadow rounded-lg text-center">
+            <div className="bg-chart-2 md:p-4 shadow rounded-lg text-center">
               <h2 className="text-sm">Team Request</h2>
               <p className="text-3xl font-bold">8</p>
             </div>

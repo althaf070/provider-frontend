@@ -26,10 +26,10 @@ const ServiceManagemen = () => {
               <p>price per hr</p>
               <ServiceDetails />
               <div className="flex gap-1 mt-1">
-                <Button variant={"destructive"} className="p-2">
+                <Button variant={"destructive"} className="p-2" size={"sm"}>
                   Delete
                 </Button>
-                <Button variant={"outline"} className="p-2 px-3 bg-silver">
+                <Button variant={"outline"} className="p-2 px-3 bg-silver" size={"sm"}>
                   Edit
                 </Button>
               </div>
