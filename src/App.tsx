@@ -3,10 +3,10 @@ import Dashboard from "./pages/Dashboard";
 import BookingManagement from "./pages/BookingManagement";
 import Reviews from "./pages/Reviews";
 import Home from "./pages/Home";
-import Auth from "./pages/Auth";
 import AuthenticatedLayout from "./AuthenticatedLayout";
 import PublicLayout from "./PublicLayout"
 import ServiceManagemen from "./pages/ServiceManagemen";
+import Registration from "./pages/Registration";
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
         {/* Public Routes (without Sidebar/Header) */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/provider/auth" element={<Auth />} />
+          <Route path="/provider/registration" element={<Registration />} />
         </Route>
 
         {/* Authenticated Routes (with Sidebar/Header) */}
