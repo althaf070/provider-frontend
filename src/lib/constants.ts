@@ -1,4 +1,4 @@
-import { FiHome, FiBook, FiUsers, FiMessageCircle, FiStar } from "react-icons/fi";
+import { FiHome, FiBook, FiUsers, FiStar } from "react-icons/fi";
 import { IconType } from "react-icons"; // Import IconType for the icon type
 import { MdDashboardCustomize } from "react-icons/md";
 import { Services } from "./types";
