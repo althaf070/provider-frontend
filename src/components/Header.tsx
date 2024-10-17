@@ -37,7 +37,7 @@ const Header = () => {
       {/* Right Side Buttons */}
       <div className="flex items-center gap-5">
         {/* Sign In Button (Visible on Desktop) */}
-        <Link to="/auth">
+        <Link to="/provider/login">
           <Button className="hidden md:block text-md font-semibold">
             Sign in
           </Button>

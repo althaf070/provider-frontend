@@ -12,11 +12,12 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
-  username: z.string().optional().or(z.literal('')), // Optional for login
+  username: z.string().optional().or(z.literal("")), // Optional for login
   email: z.string().email(),
-  phone: z.string().optional().or(z.literal('')), // Optional for login
+  phone: z.string().optional().or(z.literal("")), // Optional for login
   password: z.string().min(6)
 });
 
@@ -28,10 +29,10 @@ const Registration = ({ isRegister }: RegistrationProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: isRegister ? '' : undefined,
-      email: '',
-      phone: isRegister ? '' : undefined,
-      password: ''
+      username: isRegister ? "" : undefined,
+      email: "",
+      phone: isRegister ? "" : undefined,
+      password: ""
     }
   });
 
@@ -40,14 +41,26 @@ const Registration = ({ isRegister }: RegistrationProps) => {
   }
 
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-4">
+    <div className="grid md:grid-cols-12 place-items-center">
+      <div className="col-span-6">
         <div className="flex flex-col mt-20 h-full text-center">
-        <h1 className="text-4xl font-semibold">Welcome To QuickFix</h1>
-        <p className="text-lg text-silver">Begin Your journery as friendly neighbourhood service provider</p>
+          <h1 className="text-4xl font-semibold">
+            {isRegister ? "Welcome To QuickFix" : "Welcome Back"}
+          </h1>
+          <p className="text-lg text-silver">
+            Begin Your journery as friendly neighbourhood service provider
+          </p>
+          <img
+            src="https://media.istockphoto.com/id/513249616/vector/plumber.jpg?s=612x612&w=0&k=20&c=oAm8MmRMAluaVcnpjF-qI0hgqueNUIjBHoYtoYsR2fg="
+            alt="banner"
+            className="hidden md:block"
+          />
         </div>
       </div>
-      <div className="col-span-4 bg-primarygrey p-7 mt-10 rounded-lg shadow-xl">
+      <div className="col-span-4 bg-primarygrey p-7 mt-10 rounded-lg shadow-xl w-full ml-10">
+        <h1 className="text-center font-semibold text-2xl">
+          {isRegister ? "Register" : "Login"}
+        </h1>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -135,8 +148,22 @@ const Registration = ({ isRegister }: RegistrationProps) => {
             <Button type="submit">Submit</Button>
           </form>
         </Form>
+        {isRegister ? (
+          <p>
+            Already have account...?<Link to={"/provider/login"} className="ml-2">
+            <Button className="bg-accentgreen hover:bg-primarycharacoal">Login</Button>
+            </Link>
+          </p>
+        ) : (
+          <p>
+            Don't have account...?
+            <Link to={"/provider/register"} className="ml-2">
+            <Button className="bg-accentblue font-semibold hover:bg-primarycharacoal">Register Now</Button>
+            </Link>
+          </p>
+        )}
       </div>
-      <div className="col-span-3"></div>
+      <div className="col-span-2"></div>
     </div>
   );
 };

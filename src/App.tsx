@@ -7,7 +7,8 @@ import AuthenticatedLayout from "./AuthenticatedLayout";
 import PublicLayout from "./PublicLayout"
 import ServiceManagemen from "./pages/ServiceManagemen";
 import Registration from "./pages/Registration";
-import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
+
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
         {/* Public Routes (without Sidebar/Header) */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/provider/registration" element={<Registration isRegister/>} />
+          <Route path="/provider/register" element={<Registration isRegister/>} />
           <Route path="/provider/login" element={<Registration />} />
         </Route>
 
@@ -26,7 +27,7 @@ const App = () => {
           <Route path="/provider/services" element={<ServiceManagemen />} />
           <Route path="/provider/bookings" element={<BookingManagement />} />
           <Route path="/provider/reviews" element={<Reviews />} />
-          <Route path="/provider/settings" element={<Settings/>} />
+          <Route path="/provider/profile" element={<Profile/>} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -36,8 +37,6 @@ const App = () => {
 export default App;
 
 
-{/* <Route path="/provider/profile" element={<Profile />} /> */}
-{/* <Route path="/provider/settings" element={<Settings />} />
-<Route path="/provider/notifications" element={<Notifications />} />
-<Route path="/provider/messages" element={<MessageCenter />} />
-<Route path="/provider/analytics" element={<AnalyticsDashboard />} /> */}
+//  <Route path="/provider/settings" element={<Settings />} />
+// <Route path="/provider/notifications" element={<Notifications />} />
+// <Route path="/provider/messages" element={<MessageCenter />} 

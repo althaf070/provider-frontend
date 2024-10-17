@@ -1,7 +1,7 @@
-import ServiceDetails from "@/components/ServiceDetails";
+import MyServices from "@/components/MyServices";
+
 import ServiceForm from "@/components/ServiceForm";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+
 
 const ServiceManagemen = () => {
   return (
@@ -10,102 +10,9 @@ const ServiceManagemen = () => {
       <div className="grid md:grid-cols-12 my-4">
         <div className="col-span-4">
           <div className="grid md:grid-cols-2 gap-3">
-            <Card
-              style={{ border: "none" }}
-              className="bg-primarygrey rounded-lg shadow-sm shadow-offwhite p-3"
-            >
-              <div className="">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6EaCj17jLbF-dZp6flsAXvegvTbnFWpQ_vA&s"
-                  alt=""
-                  width={"100%"}
-                  height={"100%"}
-                />
-              </div>
-              <h2 className="text-lg font-semibold">Service title</h2>
-              <p>price per hr</p>
-              <ServiceDetails />
-              <div className="flex gap-1 mt-1">
-                <Button variant={"destructive"} className="p-2" size={"sm"}>
-                  Delete
-                </Button>
-                <Button variant={"outline"} className="p-2 px-3 bg-silver" size={"sm"}>
-                  Edit
-                </Button>
-              </div>
-            </Card>
-            <Card
-              style={{ border: "none" }}
-              className="bg-primarygrey rounded-lg shadow-sm shadow-offwhite p-3"
-            >
-              <div className="">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6EaCj17jLbF-dZp6flsAXvegvTbnFWpQ_vA&s"
-                  alt=""
-                  width={"100%"}
-                  height={"100%"}
-                />
-              </div>
-              <h2 className="text-lg font-semibold">Service title</h2>
-              <p>price per hr</p>
-              <ServiceDetails />
-              <div className="flex gap-1 mt-1">
-                <Button variant={"destructive"} className="p-2">
-                  Delete
-                </Button>
-                <Button variant={"outline"} className="p-2 px-3 bg-silver">
-                  Edit
-                </Button>
-              </div>
-            </Card>
-            <Card
-              style={{ border: "none" }}
-              className="bg-primarygrey rounded-lg shadow-sm shadow-offwhite p-3"
-            >
-              <div className="">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6EaCj17jLbF-dZp6flsAXvegvTbnFWpQ_vA&s"
-                  alt=""
-                  width={"100%"}
-                  height={"100%"}
-                />
-              </div>
-              <h2 className="text-lg font-semibold">Service title</h2>
-              <p>price per hr</p>
-              <ServiceDetails />
-              <div className="flex gap-1 mt-1">
-                <Button variant={"destructive"} className="p-2">
-                  Delete
-                </Button>
-                <Button variant={"outline"} className="p-2 px-3 bg-silver">
-                  Edit
-                </Button>
-              </div>
-            </Card>
-            <Card
-              style={{ border: "none" }}
-              className="bg-primarygrey rounded-lg shadow-sm shadow-offwhite p-3"
-            >
-              <div className="">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6EaCj17jLbF-dZp6flsAXvegvTbnFWpQ_vA&s"
-                  alt=""
-                  width={"100%"}
-                  height={"100%"}
-                />
-              </div>
-              <h2 className="text-lg font-semibold">Service title</h2>
-              <p>price per hr</p>
-              <ServiceDetails />
-              <div className="flex gap-1 mt-1">
-                <Button variant={"destructive"} className="p-2">
-                  Delete
-                </Button>
-                <Button variant={"outline"} className="p-2 px-3 bg-silver">
-                  Edit
-                </Button>
-              </div>
-            </Card>
+            <MyServices/>
+            <MyServices/>
+            <MyServices/>
           </div>
         </div>
         <div className="col-span-2"></div>
