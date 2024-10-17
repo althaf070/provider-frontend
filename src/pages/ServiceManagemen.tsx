@@ -9,7 +9,7 @@ const ServiceManagemen = () => {
       <h1 className="text-4xl font-bold">Your Current services</h1>
       <div className="grid md:grid-cols-12 my-4">
         <div className="col-span-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 gap-3">
             <Card
               style={{ border: "none" }}
               className="bg-primarygrey rounded-lg shadow-sm shadow-offwhite p-3"

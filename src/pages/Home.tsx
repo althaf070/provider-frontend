@@ -30,7 +30,7 @@ const Home = () => {
         </h3>
      
         <Carousel>
-          <CarouselContent>
+          <CarouselContent >
             <CarouselItem className="basis-1/2 lg:basis-1/5">
               <ProviderCard />
             </CarouselItem>
