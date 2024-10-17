@@ -7,6 +7,7 @@ import AuthenticatedLayout from "./AuthenticatedLayout";
 import PublicLayout from "./PublicLayout"
 import ServiceManagemen from "./pages/ServiceManagemen";
 import Registration from "./pages/Registration";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
         {/* Public Routes (without Sidebar/Header) */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/provider/registration" element={<Registration />} />
+          <Route path="/provider/registration" element={<Registration isRegister/>} />
+          <Route path="/provider/login" element={<Registration />} />
         </Route>
 
         {/* Authenticated Routes (with Sidebar/Header) */}
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="/provider/services" element={<ServiceManagemen />} />
           <Route path="/provider/bookings" element={<BookingManagement />} />
           <Route path="/provider/reviews" element={<Reviews />} />
+          <Route path="/provider/settings" element={<Settings/>} />
         </Route>
       </Routes>
     </BrowserRouter>
