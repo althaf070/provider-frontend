@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -43,6 +42,7 @@ const chartConfig = {
 
 export function LineCharts() {
   return (
+    <div className="overflow-scroll md:overflow-hidden">
     <Card style={{backgroundColor:"transparent",border:"none"}}>
       <CardHeader>
         <CardTitle>Monthly Perfomance</CardTitle>
@@ -85,7 +85,7 @@ export function LineCharts() {
           </LineChart>
         </ChartContainer>
       </CardContent>
-   
     </Card>
+    </div>
   )
 }

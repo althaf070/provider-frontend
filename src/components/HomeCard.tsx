@@ -49,12 +49,14 @@ const HomeCard = () => {
 
         <div className="col-span-1 md:col-span-1"></div>
 
-        <div className="col-span-1">
+    <Link to={"/provider/reviews"}>
+    <div className="col-span-1 ml-16 md:ml-0">
           <div className="p-7 bg-fieryOrange h-full border-none w-full rounded-lg">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold">Ratings</h2>
             <p className="text-base sm:text-lg font-medium">View Your Analytics</p>
           </div>
         </div>
+    </Link>
       </div>
     </>
   );

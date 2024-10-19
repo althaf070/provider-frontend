@@ -43,9 +43,6 @@ const Home = () => {
             <CarouselItem className="basis-1/2 lg:basis-1/5">
               <ProviderCard />
             </CarouselItem>
-            <CarouselItem className="basis-1/2 lg:basis-1/5">
-              <ProviderCard />
-            </CarouselItem>
           </CarouselContent>
         </Carousel>
       

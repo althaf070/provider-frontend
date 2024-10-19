@@ -5,7 +5,7 @@ import ServiceDetails from "./ServiceDetails";
 const ProviderCard = () => {
   return (
     <>
-      <Card className="w-[12rem] md:w-[17rem] bg-primarygrey text-offwhite">
+      <Card className="w-[7rem] md:w-[17rem] bg-primarygrey text-offwhite">
         <div>
           <img
             src="https://e7.pngegg.com/pngimages/60/583/png-clipart-man-holding-gray-laptop-car-kia-motors-auto-mechanic-automobile-repair-shop-motor-vehicle-service-mechanic-engineer-expert.png"

@@ -13,7 +13,7 @@ const ServiceDetails = () => {
   return (
     <Dialog>
   <DialogTrigger asChild >
- <Button size={"sm"}>View Details</Button>
+ <Button className="p-1" size={"sm"}>View Details</Button>
   </DialogTrigger>
   <DialogContent className="bg-primarygrey">
     <DialogHeader>
