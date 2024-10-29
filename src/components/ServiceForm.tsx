@@ -20,37 +20,42 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { keralaDistricts, services } from "@/lib/constants";
+import {  services } from "@/lib/constants";
+import { useServiceStore } from "@/store/serviceStore";
+import { Loader } from "lucide-react";
+import { useState } from "react";
 
 const formSchema = z.object({
-  service: z.string(),
+  servicename: z.string(),
   description: z.string(),
   price: z.string(),
-  location: z.string(),
-  profile: z.any() // 'z.any()' to handle the file input
+ 
 });
 
 const ServiceForm = () => {
+  const {createService,isLoading,error} = useServiceStore()
+  const [priceValue, setPriceValue] = useState("100");
+
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema)
-  });
+    resolver: zodResolver(formSchema),
+    defaultValues:{
+      servicename:"",
+      description:"",
+      price: "100",
+    }
+  })
 
   // Function to handle form submission
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Create FormData to send the image file along with other fields
-    const formData = new FormData();
-    formData.append("service", values.service);
-    formData.append("description", values.description);
-    formData.append("price", values.price);
-    formData.append("location", values.location);
-
-    // If a file is selected, append it to the formData
-    if (values.profile && values.profile[0]) {
-      formData.append("profile", values.profile[0]);
+  const onSubmit =async (values: z.infer<typeof formSchema>) => {
+    const {servicename,description,price} = values
+    try{
+      await createService(servicename,description,price) 
+      // **TODO add toast after successful creation
+    }catch(err){
+      console.log(err);
+      
     }
-
-    console.log([...formData]);
-  };
+  }
 
   return (
     <Form {...form}>
@@ -61,7 +66,7 @@ const ServiceForm = () => {
         {/* Service Field */}
         <FormField
           control={form.control}
-          name="service" 
+          name="servicename" 
           render={({ field }) => (
             <FormItem className="text-primarycharacoal">
               <FormLabel>Select Your Service</FormLabel>
@@ -74,7 +79,7 @@ const ServiceForm = () => {
                 <SelectContent>
                     {Object.entries(services).map(([key, service])=> (
                     <>
-                      <SelectItem value={service.type} key={key}>
+                     <SelectItem value={service.type} key={key}>
                   {service.title}
                   </SelectItem>
                     </>
@@ -113,62 +118,30 @@ const ServiceForm = () => {
             <FormItem>
               <FormLabel>Price/hr</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="e.g., 200"
-                  className="text-primarycharacoal"
-                  {...field}
-                />
+                <div className="flex items-center space-x-4">
+                  <Input
+                    type="range"
+                    min={100}
+                    max={1000}
+                    step={10}
+                    className="w-full"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setPriceValue(e.target.value);
+                    }}
+                  />
+                  <span className="text-offwhite text-xl font-semibold">
+                  ₹{priceValue}
+                  </span>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
-        {/* Location Field */}
-        <FormField
-          control={form.control}
-          name="location"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Location</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose your service location" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {keralaDistricts.map(item => (
-                    <SelectItem value={item} className="capitalize">{item}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Profile Image Upload */}
-        <FormField
-          control={form.control}
-          name="profile"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Upload Your Image</FormLabel>
-              <FormControl>
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => field.onChange(e.target.files)} 
-                  className="text-primarycharacoal"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button type="submit">Submit</Button>
+          {error && <p>{error}</p>}
+        <Button type="submit" variant={"secondary"}>{isLoading ? <Loader className="animate-spin" size={24}/>:"Create Service"}</Button>
       </form>
     </Form>
   );

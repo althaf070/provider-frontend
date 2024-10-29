@@ -16,7 +16,7 @@ const HomeCard = () => {
           </div>
         </div>
 
-        <div className="col-span-4 md:col-span-4 text-center shadow-lg w-full">
+        <div className="col-span-6 md:col-span-4 text-center shadow-lg w-full">
           <div className="bg-card-foreground w-full h-full p-5 rounded-lg">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
               <HyperText text="100" />
@@ -25,8 +25,8 @@ const HomeCard = () => {
           </div>
         </div>
 
-        <div className="col-span-1 md:col-span-3 row-span-2 align-items-center flex text-center shadow-lg w-full h-full">
-          <div className="bg-[#3C3D37] w-full h-full p-5 rounded-lg">
+        <div className="col-span-6 md:col-span-3 row-span-2 align-items-center flex text-center shadow-lg w-full h-full">
+          <div className="bg-[#3C3D37] w-full h-full md:p-5 rounded-lg">
             <h2 className="text-xl sm:text-4xl lg:text-6xl font-bold">Teams</h2>
             <div>
               <HyperText text="Team name1" className="text-base" />

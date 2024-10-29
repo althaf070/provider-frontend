@@ -1,8 +1,15 @@
 
 import { Card, CardContent, CardFooter } from "./ui/card";
 import ServiceDetails from "./ServiceDetails";
+import { Services } from "@/store/serviceStore";
+// Define the type for the provider's information
 
-const ProviderCard = () => {
+
+// Adjusted type for ProviderCardProps
+type ProviderCardProps = {
+  service: Services
+};
+const ProviderCard = ({service}:ProviderCardProps) => {
   return (
     <>
       <Card className="w-[7rem] md:w-[17rem] bg-primarygrey text-offwhite">
@@ -14,8 +21,9 @@ const ProviderCard = () => {
           />
         </div>
         <CardContent className="p-0 ml-2">
-          <h3 className="md:text-lg font-semibold mt-1">Title</h3>
-          <h6 className="text-sm">Service Type</h6>
+          <h3 className="md:text-lg font-semibold mt-1">{service.providerId?.username}</h3>
+          
+          <h6 className="text-sm">{service.servicename}</h6>
           <p>Rating</p>
         </CardContent>
         <CardFooter className="w-full m-2 p-0">
@@ -23,11 +31,7 @@ const ProviderCard = () => {
             <div>
               <ServiceDetails/>
             </div>
-            {/* <div className="mt-1 md:mt-0">
-              <Button className="bg-chart-3 p-2" size={"sm"}>
-                connect
-              </Button>
-            </div> */}
+          
           </div>
         </CardFooter>
       </Card>

@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ChangeStatus from "./ChangeStatus";
 
 
 const UserDetails = () => {
@@ -15,11 +14,10 @@ const UserDetails = () => {
       <h1 className="text-lg font-semibold">plumber</h1>
       <p className="text-sm font-semibold">Total earnings</p>
       <p className="text-sm font-semibold">Average Ratings</p>
-      <ChangeStatus/>
       </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default UserDetails;

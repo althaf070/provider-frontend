@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Hint } from "./Hint";
 
 const Sidebar = () => {
-  const { collapsed, onCollapsed, onExpanded } = useSideBar((state) => state);
+  const { collapsed, onCollapsed, onExpanded } = useSideBar();
   const location = useLocation();
   const label  = collapsed ? "Expand" : "Collapse";
   return (

@@ -1,24 +1,44 @@
+
+import LoadingSpinner from "@/components/LoadingSpinner";
 import MyServices from "@/components/MyServices";
-
 import ServiceForm from "@/components/ServiceForm";
-
+import { useServiceStore } from "@/store/serviceStore";
+import { useEffect } from "react";
 
 const ServiceManagemen = () => {
+  const { getProviderService, services, isLoading } = useServiceStore();
+  useEffect(() => {
+    getProviderService();
+  }, [getProviderService]);
+
+  if (isLoading) return <LoadingSpinner />;
+
   return (
     <div>
-      <h1 className="text-4xl font-bold">Your Current services</h1>
+      <h1 className="text-4xl font-bold">Your Current Services</h1>
       <div className="grid md:grid-cols-12 my-4">
         <div className="col-span-4">
           <div className="grid md:grid-cols-2 gap-3">
-            <MyServices/>
-            <MyServices/>
-            <MyServices/>
+            {services.length > 0 ? (
+              services.map((service) => (
+                <MyServices
+                  key={service.servicename}
+                  service={service}
+                />
+              ))
+            ) : (
+              <p className="text-center font-semibold text-2xl">
+                No services available
+              </p>
+            )}
           </div>
         </div>
         <div className="col-span-2"></div>
         <div className="col-span-4 md:-mt-16 mt-3">
-          <h1 className="text-4xl font-semibold">Add New services</h1>
-          <ServiceForm/>
+          <h1 className="text-4xl font-semibold">
+         Add New Service
+          </h1>
+       <ServiceForm />
         </div>
         <div className="col-span-2"></div>
       </div>

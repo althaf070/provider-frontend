@@ -1,6 +1,24 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuthStore } from "./store/authStore";
+import { Loader } from "lucide-react";
+import { useEffect } from "react";
 
 const PublicLayout = () => {
+  const {isAuthenticated,isCheckingAuth,checkAuth} = useAuthStore()
+
+  useEffect(() => {
+		checkAuth();
+	}, [checkAuth]);
+
+  if (isCheckingAuth) {
+    return <div className="w-full h-screen flex justify-center items-center">
+      <Loader className="animate-spin" size={54}/>
+    </div>; 
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className="w-full h-screen">
       {/* Renders the child route components */}

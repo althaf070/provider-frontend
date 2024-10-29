@@ -7,7 +7,7 @@ interface ContainerProps {
     children:React.ReactNode
 }
 const Container = ({children}:ContainerProps) => {
-    const {collapsed,onCollapsed,onExpanded} = useSideBar(state =>state)
+    const {collapsed,onCollapsed,onExpanded} = useSideBar()
     const matches=useMediaQuery("(max-width:1024px)")
    
     useEffect(() => {

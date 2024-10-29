@@ -10,8 +10,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useAuthStore } from "@/store/authStore";
 
 const Header = () => {
+  const {logout} = useAuthStore()
+  const handleLogout = ()=> {
+    logout();
+  }
   return (
     <nav className="fixed top-0 w-full h-20 z-[49] flex justify-between items-center bg-primarygrey shadow-md px-6">
       {/* Logo Section */}
@@ -36,13 +41,9 @@ const Header = () => {
 
       {/* Right Side Buttons */}
       <div className="flex items-center gap-5">
-        {/* Sign In Button (Visible on Desktop) */}
-        <Link to="/provider/login">
-          <Button className="hidden md:block text-md font-semibold">
-            Sign in
+           <Button className="hidden md:block text-md font-semibold" variant={"destructive"} onClick={handleLogout}>
+            Logout
           </Button>
-        </Link>
-
         {/* Mobile Menu (Visible on Mobile) */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -83,8 +84,8 @@ const Header = () => {
                 to="/provider/auth"
                 className="block w-full py-2 hover:bg-primarygrey rounded"
               >
-                <Button className="w-full text-md font-semibold">
-                  Register Now
+                <Button className="w-full text-md font-semibold" onClick={handleLogout} variant={"destructive"}>
+                 Logout
                 </Button>
               </Link>
             </DropdownMenuItem>
