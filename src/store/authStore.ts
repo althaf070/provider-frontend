@@ -4,8 +4,13 @@ import axios, { AxiosError } from "axios";
 axios.defaults.withCredentials=true
 
 interface Provider {
+  _id:string
   username: string;
   email: string;
+  address: string
+  district:string
+  phoneNumber: string,
+  verified: boolean
 }
 
 interface AuthState {
@@ -115,7 +120,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
     set({isCheckingAuth:true,error:null})
     try {
       const response = await axios.get(`${SERVER_URL}/auth/provider/check`)
-      set({provider:response.data.provider,isCheckingAuth:false,isAuthenticated: true})
+      set({provider:response.data.user,isCheckingAuth:false,isAuthenticated: true})
+      console.log("check",response.data);
+      
     } catch (err) {
       console.log(err); 
       set({ error: null, isCheckingAuth: false, isAuthenticated: false });

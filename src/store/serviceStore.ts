@@ -29,11 +29,11 @@ message: string | null;
 
 interface ServiceActions {
     createService:(servicename:string,description:string,price:string)=>Promise<void>;
-    getProviderService:()=>Promise<void>
+    getProviderService:(id:string)=>Promise<void>
     deleteService:(id:string)=>Promise<void> 
     updateService:(description:string,price:string,id:string,available:boolean)=>Promise<void>
     getServiceByid:(id:string)=> Promise<void>
-    providerException:()=> Promise<Services[]>
+    providerException:(providerId:string)=> Promise<void>
   }
 interface ErrorResponseData {
     message?: string;
@@ -68,11 +68,12 @@ try {
   }
 },
 
-getProviderService:async()=> {
+getProviderService:async(id:string)=> {
   set({isLoading: true,error:null});
   try {
-    const response = await axios.get(`${SERVER_URL}/service/providerservices`)
-    set({services:response.data.services,isLoading:false});
+    const response = await axios.get(`${SERVER_URL}/service/providerservices/${id}`)
+    set({isLoading:false,services:response.data.services,error:null});
+   
   } catch (err: unknown) {
     const error = err as AxiosError<ErrorResponseData>;
     set({
@@ -98,27 +99,37 @@ deleteService: async (id: string) => {
   }
 },
 
-updateService:async(description:string,price:string,id,available:boolean)=> {
-set({ isLoading: true, error:null})
-try {
-  const response = await axios.put(`${SERVER_URL}/service/edit/${id}`,{
-    description,price,available
-  })
-  set({isLoading:false,services:response.data.services,error:null})
-} catch (err) {
-  const error = err as AxiosError<ErrorResponseData>;
-  set({
-    error: error.response?.data?.message || "Error fetching Service",
-    isLoading: false,
-  });
-  throw error;
-}
+updateService: async (description: string, price: string, id: string, available: boolean) => {
+  set({ isLoading: true, error: null });
+  try {
+  await axios.put(`${SERVER_URL}/service/edit/${id}`, {
+      description,
+      price,
+      available,
+    });
+
+    // Update the specific service in the state
+    set((state) => ({
+      isLoading: false,
+      error: null,
+      services: state.services.map(service =>
+        service._id === id ? { ...service, description, price, available } : service
+      ),
+    }));
+  } catch (err) {
+    const error = err as AxiosError<ErrorResponseData>;
+    set({
+      error: error.response?.data?.message || "Error updating Service",
+      isLoading: false,
+    });
+  }
 },
+
 
 getServiceByid:async(id:string)=> {
   set({ isLoading: true, error:null})
   try {
-    const response = await axios.post(`${SERVER_URL}/service/${id}`)
+    const response = await axios.get(`${SERVER_URL}/service/${id}`)
     set({isLoading:false,services:response.data.services,error:null})
   } catch (err) {
     const error = err as AxiosError<ErrorResponseData>;
@@ -130,12 +141,11 @@ getServiceByid:async(id:string)=> {
   }
 },
 
-providerException: async (): Promise<Services[]> => {
+providerException: async (providerId:string) => {
   set({ isLoading: true, error: null });
   try {
-    const response = await axios.get(`${SERVER_URL}/service/providerexception`);
+    const response = await axios.get(`${SERVER_URL}/service/providerexception/${providerId}`);
     set({ isLoading: false, services: response.data.services, error: null });
-    return response.data.services; 
   } catch (err) {
     const error = err as AxiosError<ErrorResponseData>;
     set({

@@ -2,13 +2,18 @@
 import LoadingSpinner from "@/components/LoadingSpinner";
 import MyServices from "@/components/MyServices";
 import ServiceForm from "@/components/ServiceForm";
+import { useAuthStore } from "@/store/authStore";
 import { useServiceStore } from "@/store/serviceStore";
 import { useEffect } from "react";
 
 const ServiceManagemen = () => {
   const { getProviderService, services, isLoading } = useServiceStore();
+const{provider} = useAuthStore()
+  const id = provider?._id
   useEffect(() => {
-    getProviderService();
+    if(id){
+      getProviderService(id)
+    }
   }, [getProviderService]);
 
   if (isLoading) return <LoadingSpinner />;
@@ -19,7 +24,7 @@ const ServiceManagemen = () => {
       <div className="grid md:grid-cols-12 my-4">
         <div className="col-span-4">
           <div className="grid md:grid-cols-2 gap-3">
-            {services.length > 0 ? (
+            {services?.length > 0 ? (
               services.map((service) => (
                 <MyServices
                   key={service.servicename}
@@ -28,7 +33,7 @@ const ServiceManagemen = () => {
               ))
             ) : (
               <p className="text-center font-semibold text-2xl">
-                No services available
+                No services added by you
               </p>
             )}
           </div>

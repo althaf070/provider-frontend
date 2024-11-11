@@ -13,7 +13,7 @@ export default {
   		offwhite: '#F7FAFC',
   		silver: '#A0AEC0',
   		accentblue: '#0D6EFD',
-  		accentgreen: '#7FFF00',
+  		accentgreen: '#72BF78',
   		darkOlive: '#3A5F0B',
   		fieryOrange: '#FF6700',
   		vibrantPurple: '#9B5DE5'

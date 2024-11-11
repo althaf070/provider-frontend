@@ -10,19 +10,21 @@ import Registration from "./pages/Registration";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import ProfilePicUpload from "./pages/ProfilePicUpload";
+import AdminVerfication from "./pages/AdminVerfication";
 
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Routes (without Sidebar/Header) */}
+        {/* Public routes without sidebar/header */}
         <Route element={<PublicLayout />}>
           <Route path="/provider/register" element={<Registration/>} />
           <Route path="/provider/login" element={<Login />} />
         </Route>
+          <Route path="/provider/verification" element={<AdminVerfication />} />
         <Route path="/provider/profilepic" element={<ProfilePicUpload />} />
-        {/* Authenticated Routes (with Sidebar/Header) */}
+        {/* Authenticated routes with sidebar/header */}
         <Route element={<AuthenticatedLayout />}>
         <Route path="/" element={<Home />} />
           <Route path="/provider/dashboard" element={<Dashboard />} />

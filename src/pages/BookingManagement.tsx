@@ -8,24 +8,55 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-
-import DatePicker from "@/components/DatePicker";
-import { useState } from "react";
+import { useEffect } from "react";
 import { format } from "date-fns";
+import { useAppointmentStore } from "@/store/appointmentStore";
+import { useAuthStore } from "@/store/authStore";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { Badge } from "@/components/ui/badge";
 
 const BookingManagement = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const { getProviderAppointments, appointments, isLoading, updateStatuscustom,cancelAppointment } = useAppointmentStore();
+  const { provider } = useAuthStore();
 
-  const handleSubmit = async () => {
-    if (!selectedDate) {
-      alert("Please select a date before submitting.");
-      return;
+  const handleUpdate = async (id: string, status: string) => {
+    try {
+      await updateStatuscustom(id, status);
+      alert("Updated status successfully");
+    } catch (err) {
+      console.error("Failed to update status:", err);
+      alert("Failed to update status. Please try again.");
     }
-    const formattedDate = format(selectedDate, "yyyy-MM-dd");
-
-    // Log the formatted date
-    console.log("Selected Date:", formattedDate);
   };
+  
+  const handleCancel = async (id: string) => {
+    try {
+      await cancelAppointment(id);
+      alert("Updated status successfully");
+    } catch (err) {
+      console.error("Failed to update status:", err);
+      alert("Failed to update status. Please try again.");
+    }
+  };
+  
+  useEffect(() => {
+    if (provider?._id) {
+      getProviderAppointments(provider._id);
+    }
+  }, [provider, getProviderAppointments]);
+
+  if (isLoading) {
+    return <div className="flex w-full min-h-[80vh] justify-center items-center"><LoadingSpinner /></div>
+  }
+
+
+  if (!Array.isArray(appointments) || appointments.length === 0) {
+    return (
+      <div className="flex justify-center items-center min-h-[80vh]">
+        <h1 className="text-4xl lg:text-6xl font-bold text-center">No bookings</h1>
+      </div>
+    );
+  }
 
   return (
     <Table>
@@ -42,25 +73,31 @@ const BookingManagement = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">nme</TableCell>
-          <TableCell>plumbing</TableCell>
-          <TableCell>
-            12-2234
-            <span className="ml-1">
-              <DatePicker date={selectedDate} setDate={setSelectedDate} />
-            </span>
-          </TableCell>
-          <TableCell>pending</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell>$250.00</TableCell>
-          <TableCell className="text-right">
-            <div className="flex gap-2 justify-end">
-              <Button onClick={handleSubmit}>Accept</Button>
-              <Button variant={"destructive"}>Cancel</Button>
-            </div>
-          </TableCell>
-        </TableRow>
+        {appointments.map((appointment) => (
+          <TableRow key={appointment._id}>
+            <TableCell className="font-medium">{appointment?.users.username}</TableCell>
+            <TableCell>{appointment.service.servicename}</TableCell>
+            <TableCell>
+              {format(new Date(appointment.appointmentDate), "dd-MM-yyyy")}
+            </TableCell>
+            <TableCell>{appointment.status || "Pending"}</TableCell>
+            <TableCell>{appointment.payment}</TableCell>
+            <TableCell>{appointment.service.price}</TableCell>
+            <TableCell className="text-right">
+              <div className="flex gap-2 justify-end">
+                {appointment.status === "pending" && (
+                  <Button onClick={() => handleUpdate(appointment._id,'confirmed')}>Accept</Button>
+                ) }
+                {appointment.status === "confirmed"&&<Button onClick={() => handleUpdate(appointment._id,'completed')}>Completed</Button>}
+                {appointment.status === "completed"&& appointment.payment=="cash"&&<Button onClick={() => handleUpdate(appointment._id,'paid')}>Paid</Button>}
+                {appointment.status === "completed"&& appointment.payment=="online" && <Badge variant={"destructive"}>Payment pending</Badge>}
+                {appointment.status === "paid"&& <Badge className="bg-accentgreen"><p>Service Completed</p></Badge>}
+                {appointment.status == "pending"&& <Button variant="destructive" onClick={() => handleCancel(appointment._id)}>Cancel</Button>}
+             
+              </div>
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

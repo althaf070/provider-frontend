@@ -22,6 +22,7 @@ const AuthenticatedLayout = () => {
   if (!isAuthenticated) {
     return <Navigate to="/provider/login" replace />;
   }
+
   return (
     <div className="w-full h-screen flex overflow-hidden">
       <Header />
