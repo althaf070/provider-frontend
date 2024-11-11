@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios, { AxiosError } from "axios";
+import { SERVER_URL } from "@/lib/serverurl";
 
 axios.defaults.withCredentials=true
 
@@ -39,7 +40,7 @@ interface ErrorResponseData {
   message?: string;
 }
 type AuthStore = AuthState & AuthActions;
-const SERVER_URL = "http://localhost:3000/api";
+
 
 export const useAuthStore = create<AuthStore>((set) => ({
   provider: null,
