@@ -9,6 +9,7 @@ import { Services, useServiceStore } from "@/store/serviceStore";
 import { useState } from "react";
 import { Loader } from "lucide-react";
 import { Switch } from "./ui/switch";
+import { useAuthStore } from "@/store/authStore";
 
 const formSchema = z.object({
   description: z.string(),
@@ -18,6 +19,7 @@ const formSchema = z.object({
 
 const EditServiceForm = ({ service, onClose }: { service: Services; onClose: () => void }) => {
   const { updateService, isLoading, error,getProviderService } = useServiceStore();
+  const {provider} =useAuthStore()
   const [priceValue, setPriceValue] = useState(service.price);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,7 +34,9 @@ const EditServiceForm = ({ service, onClose }: { service: Services; onClose: () 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { description, price,available } = values;
     await updateService(description, price,service._id,available,);
-    getProviderService()
+    if(provider?._id){
+      getProviderService(provider?._id)
+    }
     onClose(); 
   };
 
