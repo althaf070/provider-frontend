@@ -46,7 +46,7 @@ export default function ProfilePicUpload() {
         }
       });
       console.log('Upload successful:', response.data);
-      navigate('/provider/login')
+      navigate('/provider/verification')
     } catch (error) {
       console.error('Error uploading file:', error);
     
