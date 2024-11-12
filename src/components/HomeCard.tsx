@@ -30,7 +30,7 @@ const HomeCard = () => {
         <div className="col-span-6 md:col-span-4 text-center shadow-lg w-full">
           <div className="bg-card-foreground w-full h-full p-5 rounded-lg">
           <h2 className="text-base sm:text-lg font-medium">
-              <HyperText text='T*-tal Services' />
+              <HyperText text='Total Services' />
             </h2>
             <p className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
            {dashboardData?.services}
