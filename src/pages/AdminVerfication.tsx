@@ -20,7 +20,7 @@ const AdminVerification = () => {
 
   useEffect(() => {
     if (provider?.verified) {
-      navigate('/');
+      navigate('/provider/profilepic');
     }
   }, [provider, navigate]);
 

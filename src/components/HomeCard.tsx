@@ -12,26 +12,29 @@ const HomeCard = () => {
     fetchDashboardData(provider._id)
   }
   }, [])
+
   return (
     <>
       <div className="grid grid-cols-1 gap-5 place-items-center md:grid-cols-12 md:grid-rows-2 m-5 shadow-lg">
         <div className="col-span-6 md:col-span-4 text-center w-full">
           <div className="bg-card-foreground rounded-lg w-full h-full text-center p-5 shadow-lg">
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
-              <HyperText text={String(dashboardData?.appointments.completed)} />
+            <h2 className="text-base sm:text-lg font-medium">
+              <HyperText text='Finished Total Services' />
             </h2>
-            <p className="text-base sm:text-lg font-medium">
-              Finished Total Services
+            <p className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
+           {dashboardData?.appointments.completed}
             </p>
           </div>
         </div>
 
         <div className="col-span-6 md:col-span-4 text-center shadow-lg w-full">
           <div className="bg-card-foreground w-full h-full p-5 rounded-lg">
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
-              <HyperText text={String(dashboardData?.services)} />
+          <h2 className="text-base sm:text-lg font-medium">
+              <HyperText text='T*-tal Services' />
             </h2>
-            <p className="text-base sm:text-lg font-medium">Total Services</p>
+            <p className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
+           {dashboardData?.services}
+            </p>
           </div>
         </div>
 
