@@ -49,7 +49,7 @@ const Registration = () => {
     const { username, email, address, district, phoneNumber, password } = values;
     try {
       await signup(username, email, address, district, phoneNumber, password);
-       navigate('/provider/profilepic')
+       navigate('/provider/verification')
         
     } catch (error) {
       console.log("An error occurred:", error);

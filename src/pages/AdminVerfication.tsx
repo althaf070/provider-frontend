@@ -11,11 +11,11 @@ const AdminVerification = () => {
   useEffect(() => {
     
     checkAuth();
-    const intervalId = setInterval(() => {
+    const runagain = setInterval(() => {
       checkAuth();
     }, 10000); // Check every 10 seconds
 
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(runagain); 
   }, [checkAuth]);
 
   useEffect(() => {
