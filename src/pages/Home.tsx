@@ -24,8 +24,6 @@ const Home = () => {
       }
     };
     fetchServices();
-    console.log(services,'rgrr');
-    
   }, [providerException]);
 
   return (
@@ -33,7 +31,7 @@ const Home = () => {
       <div className="text-center mt-5">
         <GradualSpacing
           className="font-display text-center text-2xl lg:text-8xl text-silver font-bold -tracking-widest md:text-7xl md:leading-[5rem]"
-          text="Hello Provider"
+          text={`Hello ${provider?.username}`}
         /> 
         <p className="text-muted text-sm text-wrap">
           Manage your services, bookings, and grow your network in one place.

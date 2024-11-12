@@ -1,14 +1,24 @@
 
 import { Link } from "react-router-dom";
 import HyperText from "./ui/hyper-text";
+import { useDashboardStore } from "@/store/dashboardstore";
+import { useEffect } from "react";
+import { useAuthStore } from "@/store/authStore";
 const HomeCard = () => {
+  const {dashboardData,fetchDashboardData} = useDashboardStore()
+  const {provider} =useAuthStore()
+  useEffect(() => {
+  if(provider?._id){
+    fetchDashboardData(provider._id)
+  }
+  }, [])
   return (
     <>
       <div className="grid grid-cols-1 gap-5 place-items-center md:grid-cols-12 md:grid-rows-2 m-5 shadow-lg">
         <div className="col-span-6 md:col-span-4 text-center w-full">
           <div className="bg-card-foreground rounded-lg w-full h-full text-center p-5 shadow-lg">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
-              <HyperText text="100" />
+              <HyperText text={String(dashboardData?.appointments.completed)} />
             </h2>
             <p className="text-base sm:text-lg font-medium">
               Finished Total Services
@@ -19,9 +29,9 @@ const HomeCard = () => {
         <div className="col-span-6 md:col-span-4 text-center shadow-lg w-full">
           <div className="bg-card-foreground w-full h-full p-5 rounded-lg">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center">
-              <HyperText text="100" />
+              <HyperText text={String(dashboardData?.services)} />
             </h2>
-            <p className="text-base sm:text-lg font-medium">Total Earnings</p>
+            <p className="text-base sm:text-lg font-medium">Total Services</p>
           </div>
         </div>
 
@@ -53,7 +63,7 @@ const HomeCard = () => {
     <div className="col-span-1 ml-16 md:ml-0">
           <div className="p-7 bg-fieryOrange h-full border-none w-full rounded-lg">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold">Ratings</h2>
-            <p className="text-base sm:text-lg font-medium">View Your Analytics</p>
+            <p className="text-base sm:text-lg font-medium">View Your reviews</p>
           </div>
         </div>
     </Link>
