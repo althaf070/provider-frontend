@@ -36,7 +36,7 @@ const Login = () => {
    const { email, password } = values;
    try {
     await login(email, password)
-    navigate('/provider/verification')
+    navigate('/')
    } catch (error) {
     console.log(error);
     
