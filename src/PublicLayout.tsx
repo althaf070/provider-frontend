@@ -29,8 +29,9 @@ const PublicLayout = () => {
 
   return (
     <div className="w-full h-screen">
-      {/* Renders the child route components */}
+      {!isAuthenticated && (
       <Outlet />
+      )}
     </div>
   );
 };

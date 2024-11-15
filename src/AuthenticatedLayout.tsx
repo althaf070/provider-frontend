@@ -25,7 +25,7 @@ const AuthenticatedLayout = () => {
 
   return (
     <>
-    {isAuthenticated &&provider&& (
+    {isAuthenticated &&provider&&(
         <div className="w-full h-screen flex overflow-hidden">
         <Header />
         <Sidebar />

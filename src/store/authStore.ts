@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import axios, { AxiosError } from "axios";
-import { SERVER_URL } from "@/lib/serverurl";
+import { IMG_SERVER_URL, SERVER_URL } from "@/lib/serverurl";
 
 axios.defaults.withCredentials=true
+axios.defaults.baseURL=IMG_SERVER_URL
 
 interface Provider {
   _id:string

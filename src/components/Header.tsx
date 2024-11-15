@@ -13,11 +13,12 @@ import {
 import { useAuthStore } from "@/store/authStore";
 
 const Header = () => {
-  const {logout} = useAuthStore()
+  const {logout,checkAuth} = useAuthStore()
   const navigate = useNavigate()
   const handleLogout = ()=> {
     logout();
-    navigate('/login');
+    checkAuth()
+    navigate('/provider/login');
   }
   return (
     <nav className="fixed top-0 w-full h-20 z-[49] flex justify-between items-center bg-primarygrey shadow-md px-6">
