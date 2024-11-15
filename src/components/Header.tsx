@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Button } from "./ui/button";
 import { FiMenu } from "react-icons/fi";
@@ -13,10 +13,11 @@ import {
 import { useAuthStore } from "@/store/authStore";
 
 const Header = () => {
-  const {logout,checkAuth} = useAuthStore()
+  const {logout} = useAuthStore()
+  const navigate = useNavigate()
   const handleLogout = ()=> {
     logout();
-    checkAuth();
+    navigate('/login');
   }
   return (
     <nav className="fixed top-0 w-full h-20 z-[49] flex justify-between items-center bg-primarygrey shadow-md px-6">
