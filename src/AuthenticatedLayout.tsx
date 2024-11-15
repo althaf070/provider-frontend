@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 
 const AuthenticatedLayout = () => {
-  const {isAuthenticated,isCheckingAuth,checkAuth} = useAuthStore()
+  const {isAuthenticated,isCheckingAuth,checkAuth,provider} = useAuthStore()
 
   useEffect(() => {
 		checkAuth();
@@ -24,16 +24,20 @@ const AuthenticatedLayout = () => {
   }
 
   return (
-    <div className="w-full h-screen flex overflow-hidden">
-      <Header />
-      <Sidebar />
-      <main className="flex-1 overflow-y-auto p-4">
-        {/* Renders the child route components */}
-        <Container>
-          <Outlet />
-        </Container>
-      </main>
-    </div>
+    <>
+    {isAuthenticated &&provider&& (
+        <div className="w-full h-screen flex overflow-hidden">
+        <Header />
+        <Sidebar />
+        <main className="flex-1 overflow-y-auto p-4">
+          {/* Renders the child route components */}
+          <Container>
+            <Outlet />
+          </Container>
+        </main>
+      </div>
+    )}
+    </>
   );
 };
 
