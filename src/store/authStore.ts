@@ -107,17 +107,17 @@ export const useAuthStore = create<AuthStore>((set) => ({
       throw error;
     }
   },
-  logout:async()=> {
-    set({isLoading:true,error:null})
+  logout: async () => {
+    set({ isLoading: true, error: null });
     try {
-      await axios.post(`${SERVER_URL}/auth/provider/logout`)
-      set({provider:null,isAuthenticated:false,error:null,isLoading:false})
-     
+      await axios.post(`${SERVER_URL}/auth/provider/logout`, {}, { withCredentials: true });
+      set({ provider: null, isAuthenticated: false, error: null, isLoading: false });
     } catch (error) {
+      console.error(error); // Log for debugging
       set({ error: "Error logging out", isLoading: false });
-			throw error;
     }
   },
+  
   
   checkAuth:async()=> {
     set({isCheckingAuth:true,error:null})
