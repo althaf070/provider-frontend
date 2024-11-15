@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 
 const AuthenticatedLayout = () => {
-  const {isAuthenticated,isCheckingAuth,checkAuth,provider} = useAuthStore()
+  const {isAuthenticated,isCheckingAuth,checkAuth} = useAuthStore()
 
   useEffect(() => {
 		checkAuth();
@@ -25,7 +25,7 @@ const AuthenticatedLayout = () => {
 
   return (
     <>
-    {isAuthenticated &&provider&&(
+    {isAuthenticated &&(
         <div className="w-full h-screen flex overflow-hidden">
         <Header />
         <Sidebar />

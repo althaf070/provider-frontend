@@ -13,7 +13,7 @@ import {
 import { useAuthStore } from "@/store/authStore";
 
 const Header = () => {
-  const {logout} = useAuthStore()
+  const {logout,isAuthenticated} = useAuthStore()
 
   return (
     <nav className="fixed top-0 w-full h-20 z-[49] flex justify-between items-center bg-primarygrey shadow-md px-6">
@@ -39,9 +39,9 @@ const Header = () => {
 
       {/* Right Side Buttons */}
       <div className="flex items-center gap-5">
-           <Button className="hidden md:block text-md font-semibold" variant={"destructive"} onClick={handleLogout}>
+          {isAuthenticated && <Button className="hidden md:block text-md font-semibold" variant={"destructive"} onClick={logout}>
             Logout
-          </Button>
+          </Button>}
         {/* Mobile Menu (Visible on Mobile) */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -82,9 +82,9 @@ const Header = () => {
                 to="/provider/auth"
                 className="block w-full py-2 hover:bg-primarygrey rounded"
               >
-                <Button className="w-full text-md font-semibold" onClick={logout} variant={"destructive"}>
+                {isAuthenticated && <Button className="w-full text-md font-semibold" onClick={logout} variant={"destructive"}>
                  Logout
-                </Button>
+                </Button>}
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

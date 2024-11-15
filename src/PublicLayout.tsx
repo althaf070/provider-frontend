@@ -22,16 +22,13 @@ const PublicLayout = () => {
     return <Navigate to="/provider/verification" replace />;
   }
 
-  // Redirect to home if the user is authenticated and verified
   if (isAuthenticated && provider?.verified) {
     return <Navigate to="/" replace />;
   }
 
   return (
     <div className="w-full h-screen">
-      {!isAuthenticated && (
       <Outlet />
-      )}
     </div>
   );
 };
