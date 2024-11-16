@@ -87,12 +87,12 @@ getProviderService:async(id:string)=> {
 deleteService: async (id: string) => {
   set({ isLoading: true, error: null })
   try {
-    await axios.delete(`${SERVER_URL}/service/delete/${id}`)
     set((state) => ({
       isLoading: false,
       error: null,
-      services: state.services.filter(service => service._id !== id) // filterd service from deleted services
+      services: state.services.filter(service => service._id !== id)
     }))
+    await axios.delete(`${SERVER_URL}/service/delete/${id}`)
   } catch (error) {
     console.log(error, "in delete service")
     set({ isLoading: false, error: "Failed to delete service" })
