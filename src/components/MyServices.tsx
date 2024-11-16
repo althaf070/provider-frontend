@@ -12,6 +12,7 @@ import {
 } from "./ui/dialog";
 import { useState } from "react";
 import { Badge } from "./ui/badge";
+import { useAuthStore } from "@/store/authStore";
 
 
 type MyServicesProps = {
@@ -20,12 +21,23 @@ type MyServicesProps = {
 };
 
 const MyServices = ({ service }: MyServicesProps) => {
-  const { deleteService } = useServiceStore();
+  const { deleteService,getProviderService } = useServiceStore();
   const [open, setOpen] = useState(false);
-
+  const{provider} = useAuthStore()
+  const sid = provider?._id
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
-
+const handleDelete = async(id:string)=> {
+  try {
+   if(sid){
+    await deleteService(id)
+    await getProviderService(sid)
+   }
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
   return (
     <div
       className="bg-primarygrey rounded-lg shadow-sm p-5 w-[210px] h-auto"
@@ -40,7 +52,7 @@ const MyServices = ({ service }: MyServicesProps) => {
           variant="destructive"
           className="p-2"
           size="sm"
-          onClick={() => deleteService(service._id)}
+          onClick={() => handleDelete(service._id)}
         >
           Delete
         </Button>
