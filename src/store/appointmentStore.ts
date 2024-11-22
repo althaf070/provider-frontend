@@ -26,7 +26,7 @@ message: string | null;
 }
 interface AppointmentActiions{
 getProviderAppointments:(id:string)=>Promise<void>;
-updateStatuscustom:(aid:string,status:string)=>Promise<void>;
+updateStatuscustom:(aid:string,status:string,price?:string)=>Promise<void>;
 cancelAppointment:(aid:string)=>Promise<void>;
 }
 interface ErrorResponseData {
@@ -55,12 +55,13 @@ interface ErrorResponseData {
           }
     },
 
-  async updateStatuscustom(aid, status) {
+  async updateStatuscustom(aid, status,price?) {
     set({ isLoading: true, error: null });
 
     try {
         const response = await axios.patch(`${SERVER_URL}/appointments/update/${aid}`, {
-            status
+            status,
+            price
         });
         set((state) => ({
           isLoading: false,

@@ -19,9 +19,9 @@ const BookingManagement = () => {
   const { getProviderAppointments, appointments, isLoading, updateStatuscustom,cancelAppointment } = useAppointmentStore();
   const { provider } = useAuthStore();
 
-  const handleUpdate = async (id: string, status: string) => {
+  const handleUpdate = async (id: string, status: string,price?:string) => {
     try {
-      await updateStatuscustom(id, status);
+      await updateStatuscustom(id, status,price);
       alert("Updated status successfully");
     } catch (err) {
       console.error("Failed to update status:", err);
@@ -89,7 +89,7 @@ const BookingManagement = () => {
                   <Button onClick={() => handleUpdate(appointment._id,'confirmed')}>Accept</Button>
                 ) }
                 {appointment.status === "confirmed"&&<Button onClick={() => handleUpdate(appointment._id,'completed')}>Completed</Button>}
-                {appointment.status === "completed"&& appointment.payment=="cash"&&<Button onClick={() => handleUpdate(appointment._id,'paid')}>Paid</Button>}
+                {appointment.status === "completed"&& appointment.payment=="cash"&&<Button onClick={() => handleUpdate(appointment._id,'paid',appointment.service.price)}>Paid</Button>}
                 {appointment.status === "completed"&& appointment.payment=="online" && <Badge variant={"destructive"}>Payment pending</Badge>}
                 {appointment.status === "paid"&& <Badge className="bg-accentgreen"><p>Service Completed</p></Badge>}
                 {appointment.status == "pending"&& <Button variant="destructive" onClick={() => handleCancel(appointment._id)}>Cancel</Button>}
