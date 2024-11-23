@@ -1,9 +1,9 @@
 import { FiHome, FiBook, FiUsers, FiStar } from "react-icons/fi";
-import { IconType } from "react-icons"; // Import IconType for the icon type
+import { IconType } from "react-icons"; 
 import { MdDashboardCustomize } from "react-icons/md";
 import { Services } from "./types";
-import { CgProfile } from "react-icons/cg";
-// Define a type for the sidebar links
+// import { CgProfile } from "react-icons/cg";
+
 interface SidebarLink {
   title: string;
   path: string;
@@ -38,15 +38,10 @@ export const sidebarLinks: SidebarLink[] = [
     icon: FiStar,
   },
   // {
-  //   title: "Messages",
-  //   path: "/provider/messages",
-  //   icon: FiMessageCircle,
+  //   title: "Profile",
+  //   path: "/provider/profile",
+  //   icon: CgProfile,
   // },
-  {
-    title: "Profile",
-    path: "/provider/profile",
-    icon: CgProfile,
-  },
 ];
 
 
