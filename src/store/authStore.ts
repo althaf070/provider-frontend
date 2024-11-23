@@ -12,7 +12,10 @@ interface Provider {
   address: string
   district:string
   phoneNumber: string,
-  verified: boolean
+  verified: boolean,
+  totalEarning:number
+  averageRating:number
+  profilePic?:string
 }
 
 interface AuthState {

@@ -28,7 +28,7 @@ if(provider?._id){
         {/* Revenue Section */}
         <div className="col-span-12 sm:col-span-6 md:col-span-4 bg-chart-3 p-6 shadow-xl rounded-lg">
           <h3 className="text-xl font-semibold text-silver">Total Revenue</h3>
-          <h1 className="text-5xl font-bold mt-2">$1200</h1>
+          <h1 className="text-5xl font-bold mt-2">{provider?.totalEarning}</h1>
         </div>
 
         {/* Job Stats Section */}
