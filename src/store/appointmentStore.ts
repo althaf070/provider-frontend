@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { SERVER_URL } from "@/lib/serverurl";
 import axios, { AxiosError } from "axios";
+import { toast } from "sonner";
 
 interface Appointment {
 _id:string
@@ -70,6 +71,7 @@ interface ErrorResponseData {
           ),
           error: null,
       }));
+      toast.info("Status changed to " + status)
       return response.data;
         
     } catch (err) {
@@ -93,6 +95,7 @@ async cancelAppointment(aid) {
               appointments: state.appointments.filter(appointment => appointment._id !== aid),
               error: null,
           }));
+          toast.warning("Cancelled Appointment")
           return response.data;  // Return data for further actions
       } catch (err) {
         const error = err as AxiosError<ErrorResponseData>;

@@ -33,7 +33,7 @@ const formSchema = z.object({
 });
 
 const ServiceForm = () => {
-  const {createService,isLoading,error} = useServiceStore()
+  const {createService,isLoading} = useServiceStore()
   const [priceValue, setPriceValue] = useState("100");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -50,7 +50,6 @@ const ServiceForm = () => {
     const {servicename,description,price} = values
     try{
       await createService(servicename,description,price) 
-      // **TODO add toast after successful creation
     }catch(err){
       console.log(err);
       
@@ -140,7 +139,7 @@ const ServiceForm = () => {
             </FormItem>
           )}
         />
-          {error && <p>{error}</p>}
+       
         <Button type="submit" variant={"secondary"}>{isLoading ? <Loader className="animate-spin" size={24}/>:"Create Service"}</Button>
       </form>
     </Form>

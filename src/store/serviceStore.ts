@@ -1,5 +1,6 @@
 import { SERVER_URL } from "@/lib/serverurl";
 import axios, { AxiosError } from "axios";
+import { toast } from "sonner"
 import { create } from "zustand";
 
 export interface Provider {
@@ -58,12 +59,14 @@ try {
     isLoading: false,
     error: null
   }));
+toast.success(response.data.message)
 }  catch (err: unknown) {
     const error = err as AxiosError<ErrorResponseData>;
     set({
       error: error.response?.data?.message || "Error Creating Service",
       isLoading: false,
     });
+    toast.error(error.response?.data?.message)
     throw error;
   }
 },
@@ -92,6 +95,7 @@ deleteService: async (id: string) => {
       error: null,
       services: state.services.filter(service => service._id !== id)
     }))
+    toast.warning("Service deleted successfully")
     await axios.delete(`${SERVER_URL}/service/delete/${id}`)
   } catch (error) {
     console.log(error, "in delete service")
@@ -116,12 +120,14 @@ updateService: async (description: string, price: string, id: string, available:
         service._id === id ? { ...service, description, price, available } : service
       ),
     }));
+    toast.info("Service updated successfully")
   } catch (err) {
-    const error = err as AxiosError<ErrorResponseData>;
+    const error = err as AxiosError<ErrorResponseData>
     set({
       error: error.response?.data?.message || "Error updating Service",
       isLoading: false,
     });
+    toast.error(error.response?.data?.message)
   }
 },
 

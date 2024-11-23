@@ -22,7 +22,6 @@ const BookingManagement = () => {
   const handleUpdate = async (id: string, status: string,price?:string) => {
     try {
       await updateStatuscustom(id, status,price);
-      alert("Updated status successfully");
     } catch (err) {
       console.error("Failed to update status:", err);
       alert("Failed to update status. Please try again.");
@@ -32,7 +31,6 @@ const BookingManagement = () => {
   const handleCancel = async (id: string) => {
     try {
       await cancelAppointment(id);
-      alert("Updated status successfully");
     } catch (err) {
       console.error("Failed to update status:", err);
       alert("Failed to update status. Please try again.");

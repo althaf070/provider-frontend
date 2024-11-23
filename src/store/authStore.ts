@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios, { AxiosError } from "axios";
 import { IMG_SERVER_URL, SERVER_URL } from "@/lib/serverurl";
+import { toast } from "sonner";
 
 axios.defaults.withCredentials=true
 axios.defaults.baseURL=IMG_SERVER_URL
@@ -80,6 +81,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         message: response.data.message,
         isLoading: false,
       });
+      toast.success(response.data.message);
     } catch (err: unknown) {
       const error = err as AxiosError<ErrorResponseData>;
     
@@ -87,7 +89,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         error: error.response?.data?.message || "Error signing up",
         isLoading: false,
       });
-    
+      toast.error(error.response?.data.message)
       throw error;
     }
   },
@@ -99,6 +101,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         email,password
       })
       set({provider:response.data.provider,isAuthenticated:true, message:response.data.message,isLoading: false,})
+      toast.success(response.data.message);
     } catch (err: unknown) {
       const error = err as AxiosError<ErrorResponseData>;
     
@@ -106,7 +109,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         error: error.response?.data?.message || "Error Loggin in",
         isLoading: false,
       });
-    
+      toast.error(error.response?.data.message)
       throw error;
     }
   },
@@ -116,6 +119,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
     try {
       await axios.post(`${SERVER_URL}/auth/provider/logout`);
       set({ provider: null, isAuthenticated: false, error: null, isLoading: false });
+      toast.warning("Logout was successful")
     } catch (error) {
       console.error(error); // Log for debugging
       set({ error: "Error logging out", isLoading: false });
