@@ -4,8 +4,10 @@ import HyperText from "./ui/hyper-text";
 import { useDashboardStore } from "@/store/dashboardstore";
 import { useEffect } from "react";
 import { useAuthStore } from "@/store/authStore";
+import { useServiceStore } from "@/store/serviceStore";
 const HomeCard = () => {
   const {dashboardData,fetchDashboardData} = useDashboardStore()
+  const{services} = useServiceStore()
   const {provider} =useAuthStore()
   useEffect(() => {
   if(provider?._id){
@@ -40,11 +42,14 @@ const HomeCard = () => {
 
         <div className="col-span-6 md:col-span-3 row-span-2 align-items-center flex text-center shadow-lg w-full h-full">
           <div className="bg-[#3C3D37] w-full h-full md:p-5 rounded-lg">
-            <h2 className="text-xl sm:text-4xl lg:text-6xl font-bold">Teams</h2>
+            <h2 className="text-xl sm:text-4xl lg:text-6xl font-bold">Services</h2>
             <div>
-              <HyperText text="Team name1" className="text-base" />
-              <HyperText text="Team name2" className="text-base"/>
-              <HyperText text="Team name3" className="text-base"/>
+              {services?.length > 0 ? (
+                services?.map(service => (
+                  <HyperText text={service.servicename} className="text-base" key={service._id}/>
+                ))
+              ):  <HyperText text="No Services hasn't been added" className="text-base"/>}
+             
             </div>
           </div>
         </div>

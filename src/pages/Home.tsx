@@ -1,30 +1,11 @@
-import HomeCard from "@/components/HomeCard";
-import ProviderCard from "@/components/ProviderCard";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem
-} from "@/components/ui/carousel";
+import HomeCard from "@/components/HomeCard";;
 import GradualSpacing from "@/components/ui/gradual-spacing";
 import { useAuthStore } from "@/store/authStore";
-import { useServiceStore } from "@/store/serviceStore";
-import { useEffect } from "react";
+
 
 const Home = () => {
-  const { providerException, services } = useServiceStore();
+ 
   const {provider} = useAuthStore()
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        if(provider?._id){
-          await providerException(provider?._id);
-        }
-      } catch (error) {
-        console.log("Error fetching services:", error);
-      }
-    };
-    fetchServices();
-  }, [providerException]);
 
   return (
     <main>
@@ -38,7 +19,7 @@ const Home = () => {
         </p>
       </div>
       <HomeCard />
-      <div className="md:mx-8 md:my-5">
+      {/* <div className="md:mx-8 md:my-5">
         <h3 className="font-semibold text-xl lg:text-4xl my-4 text-offwhite">
           {services && services.length > 0 ? "Discover Other Service Providers" : "No Service Providers Found"}
         </h3>
@@ -54,7 +35,7 @@ const Home = () => {
           </CarouselContent>
         </Carousel>
       
-      </div>
+      </div> */}
     </main>
   );
 };
